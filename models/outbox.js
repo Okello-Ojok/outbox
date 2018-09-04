@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var userSchema = new mongoose.Schema({
+var registrationSchema = new mongoose.Schema({
 
     firstname: {
         type: String, required: true
@@ -17,11 +17,34 @@ var userSchema = new mongoose.Schema({
     phone: {
         type: String, required: true
     },
-    organization: {
+    altphone: {
+        type: String, required: true
+    },
+    idType: {
+        type: String, required: true
+    },
+    idNumber: {
+        type: String, required: true
+    },
+    company: {
         type: String, required: true
     }
 
 });
+
+var userInfo = new mongoose.Schema({
+    dateJoined: {
+        type: Date
+    },
+    dateOut: {
+        type: Date
+    },
+    memberShipPeriod:{
+        type: Number
+    },
+    userDetails: [registrationSchema]
+});
+
 
 var utilitySchema = new mongoose.Schema({
 
@@ -39,6 +62,7 @@ var utilitySchema = new mongoose.Schema({
       }
   
   });
+
   
   var consumptionSchema = new mongoose.Schema({
 
@@ -55,8 +79,7 @@ var utilitySchema = new mongoose.Schema({
   });
 
   
-
-  var eventSchema = new mongoose.Schema({
+var eventSchema = new mongoose.Schema({
 
     eventname: {
         type: String, required: true
@@ -80,24 +103,99 @@ var utilitySchema = new mongoose.Schema({
 
 });
 
+
+
 var assetSchema = new mongoose.Schema({
 
-    item: {
+    tagNumber: {
+        type: String
+    },
+    serialNumber: {
+        type: String
+    },
+    class: {
+        type: String
+    },
+
+    itemName: {
         type: String, required: true
     },
-    quantity: {
+    manufacturerSeller: {
         type: String, required: true
     },
-    state: {
-        type: String, enum: ["Good", "Bad"], default: 'Good'
+    color: {
+        type: String, required: true
+    },
+    numberOfItems: {
+        type: String, required: true
+    },
+    itemDescription: {
+        type: String
+    },
+    owner: {
+        type: String, required: true
+    },
+    category: {
+        type: String, required: true
+    },
+    dateOfPurchase: {
+        type: Date, required: true
+    },
+    purchasePrice: {
+        type: Number, required: true
     }
   
+  });
+
+
+
+  var paymentSchema = new mongoose.Schema({
+      lockerFee: {
+          type: Number
+      },
+      accessKeyFee: {
+          type: Number
+      },
+      monthlyFee: {
+          type: Number
+      },
+      servicesUsed: {
+
+    },
+    userDetails: [registrationSchema]
+
+  });
+
+
+  var brandingMaterials = new mongoose.Schema({
+       item: {
+           type: String, required: true
+       },
+       condition: {
+            type: String, enum: ["Good", "Very Good", "Poor", "Very Poor"], required: true    
+       },
+       commentsCurrent: {
+            type: String, required: true
+       },
+       itemsTaken: {
+           type: String, enum: ["Yes", "No"], required: true
+       },
+       dateTaken: {
+           type: Date
+       },
+       dateReturned: {
+           type: Date
+       },
+       commentsonReturn: {
+           type: String, required: true
+       }
   });
   
   
 
-mongoose.model('Users', userSchema, 'users');
+mongoose.model('Users', registrationSchema, 'users');
 mongoose.model('Utilities', utilitySchema, 'utilities');
 mongoose.model('Consumption', consumptionSchema, 'consumption');
 mongoose.model('Events', eventSchema, 'events');
 mongoose.model('Assets', assetSchema, 'assets');
+mongoose.model('Payments', paymentSchema, 'payments');
