@@ -148,8 +148,20 @@ var assetSchema = new mongoose.Schema({
   });
 
 
+var servicesSchema = new mongoose.Schema({
+    cow: {
+        type: String, enum: ["Yes", "No"]
+    },
+    locker: {
+        type: String, enum: ["Yes", "No"]
+    },
+    key: {
+        type: String, enum: ["Yes", "No"]
+    }  
+});
 
-  var paymentSchema = new mongoose.Schema({
+
+var paymentSchema = new mongoose.Schema({
       lockerFee: {
           type: Number
       },
@@ -193,9 +205,12 @@ var assetSchema = new mongoose.Schema({
   
   
 
-mongoose.model('Users', registrationSchema, 'users');
+mongoose.model('UserReg', registrationSchema, 'users');
 mongoose.model('Utilities', utilitySchema, 'utilities');
 mongoose.model('Consumption', consumptionSchema, 'consumption');
 mongoose.model('Events', eventSchema, 'events');
 mongoose.model('Assets', assetSchema, 'assets');
+mongoose.model('UserInfo', userInfo, 'userinfo');
+mongoose.model('Services', servicesSchema, 'services');
 mongoose.model('Payments', paymentSchema, 'payments');
+mongoose.model('Branding', brandingMaterials, 'branding');

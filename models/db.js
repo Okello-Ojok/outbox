@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-//var uri = 'mongodb://localhost:27017/Outbox';
-var uri = 'mongodb://okello:123456789okello@ds245132.mlab.com:45132/outbox';
+var uri = 'mongodb://localhost:27017/Outbox';
+//var uri = 'mongodb://okello:123456789okello@ds245132.mlab.com:45132/outbox';
 mongoose.connect(uri, {
   useNewUrlParser: true
 });
