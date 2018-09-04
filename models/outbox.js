@@ -171,9 +171,6 @@ var paymentSchema = new mongoose.Schema({
       monthlyFee: {
           type: Number
       },
-      servicesUsed: {
-
-    },
     userDetails: [registrationSchema]
 
   });
